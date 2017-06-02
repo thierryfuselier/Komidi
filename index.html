@@ -60,7 +60,17 @@ font:18px "Lucida Grande", Helvetica, Arial, Sans-Serif;
 </div>    	  
 <div class="ruban_gauche" style="border-color: transparent #2E4886 transparent transparent; top: 75px;"></div>
 <fieldset style="float:left;position:relative;top:120px;display:block;clear:both;"><legend>PHP</legend>
-<?php echo rating_bar('correction','5'); ?></textarea>
+<p><b>N'oubliez pas de modifier cette ligne (33) dans le fichier "_drawrating.php" en mettant le nom de votre base de donnée à la place de "COUCOU"</b></p>
+<textarea cols="100" style="max-width:800px;max-height:100px;">if ($count == 0) {
+			$req = "INSERT INTO `COUCOU`.`ratings` (`vote_id` ,`page_id` ,`total_votes` ,`total_value` ,`used_ips` ) VALUES (NULL , '".$page_id."', '0', '0', NULL);";
+			$result = DB::getInstance()->exec($req);	
+		}
+</textarea>
+<p><b>Ceci est à ajouter en haut de toute vos pages php avant tout code HTML</b></p>
+<textarea cols="50" style="max-width:500px;max-height:100px;"><?php require('vote/_drawrating.php'); ?></textarea>
+<p><i>Il ne doit pas y avoir d'espace également ! (voir code source de cette page pour exemple)</i></p> 
+<p><b>Enfin, ceci est aussi à ajouter au milieu de votre code html là où vous voulez les étoiles</b></p>
+<textarea cols="50" style="max-width:500px;max-height:100px;"><?php echo rating_bar('correction','10'); ?></textarea>
 </fieldset>
 <fieldset style="float:left;position:relative;margin-top:150px;display:block;clear:both;"><legend>CSS</legend>
 <p><b>N'oubliez pas de changer les images dans le fichier rating.css en fonction de celle que vous voulez !</b></p>
